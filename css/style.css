@@ -1,0 +1,161 @@
+@font-face {
+	font-family: 'BonvenoCFLight';
+	src: url('../fonts/BonvenoCF-Light-webfont.eot');
+	src: url('../fonts/BonvenoCF-Light-webfont.eot?#iefix') format('embedded-opentype'),
+		 url('../fonts/BonvenoCF-Light-webfont.woff') format('woff'),
+		 url('../fonts/BonvenoCF-Light-webfont.ttf') format('truetype'),
+		 url('../fonts/BonvenoCF-Light-webfont.svg#BonvenoCFLight') format('svg');
+	font-weight: normal;
+	font-style: normal;
+
+}
+html,body {font-family:Arial, Helvetica, sans-serif;}
+html {
+	background-color:rgb(53,166,246);
+	height:100%;
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.41, rgb(129,226,250)),
+		color-stop(0.65, rgb(91,198,252)),
+		color-stop(0.91, rgb(53,166,246))
+	);
+	background-image: -moz-linear-gradient(
+		center bottom,
+		rgb(129,226,250) 41%,
+		rgb(91,198,252) 65%,
+		rgb(53,166,246) 91%
+	);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#35A6F6', endColorstr='#81FFFA');
+	background-repeat:no-repeat;
+}
+.header {
+	width:830px;
+	margin:20px auto 5px;
+	font-size:42px;
+	font-weight:bold;
+	color:white;
+	text-shadow: 1px 1px 1px #333;
+	font-family: 'BonvenoCFLight', Arial,Helvetica,sans-serif;
+}
+#main-content {
+	border-radius:10px;
+	background-color:rgba(255,255,255,.8);
+	border:solid 5px #fafafa;
+	width:835px;
+	min-height:480px;
+	margin:0 auto 20px;
+}
+#left-content {
+	width:520px;
+	height:480px;
+	overflow:hidden;
+	float:left;
+	position:relative;
+	z-index:1;
+}
+#main-image {
+	border-top-left-radius:10px;
+	border-bottom-left-radius:10px;
+}
+#right-content {
+	height: 460px;
+	background: #dadada;
+	border-left: solid 2px #333;
+	float: right;
+	width: 293px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	padding:10px;
+}
+#fileupload {
+	width: 570px;
+	position: relative;
+	left: -200px;
+	z-index: 0;
+	height:41px;
+}
+fieldset {
+	padding:10px !important; font-weight:bold;color:#333;border-radius: 2px;width:270px;margin-bottom:5px;
+}
+.genericwrapper {
+	position:relative;
+	width: 330px;
+	width: 270px;
+	overflow: hidden;
+}
+.uploadbutton {
+	background-color:#8FBF26;
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.36, rgb(170,222,27)),
+		color-stop(0.68, rgb(143,191,38))
+	);
+	background-image: -moz-linear-gradient(
+		center bottom,
+		rgb(170,222,27) 36%,
+		rgb(143,191,38) 68%
+	);
+	background-repeat:no-repeat;
+	width:250px;
+	padding:10px;
+	border-radius:5px;
+	position:relative;
+	font-size:18px;
+	text-shadow: 1px 1px 1px #999;
+	color:white;
+	font-weight:bold;
+	text-align:center;
+	font-family:Arial, Helvetica, sans-serif;
+}
+.uploadbutton:hover {
+	background-image: -webkit-gradient(
+		linear,
+		left bottom,
+		left top,
+		color-stop(0.36, rgb(143,191,38)),
+		color-stop(0.68, rgb(170,222,27))
+	);
+	background-image: -moz-linear-gradient(
+		center bottom,
+		rgb(143,191,38) 36%,
+		rgb(170,222,27) 68%
+	);
+}
+.filename-wrap {
+	margin-top:10px;
+}
+#filename {
+	float: left;
+	font-size: 9pt;
+}
+#uploadfile {
+	float: right;
+	font-size: 8pt;
+	background: red;
+	padding: 3px 6px;
+	border-radius: 5px;
+	border: none;
+	color: white;
+}
+.gridwrapper {
+	float: left;
+	background-size: 270px 270px;
+	height: 240px;
+	width: 270px;
+	padding:15px 0;
+}
+#grid0,#grid1,#grid2,#grid3,#grid4,#grid5,#grid6,#grid7,#grid8 {
+	float: left;
+	width: 90px;
+	height: 62px;
+	margin-bottom: 28px;
+	cursor:pointer;
+}
+.unpadded {margin:0px;}
+.ext-el-mask {background-color:#333 !important;}
+.upload-hidden {position:relative;}
+

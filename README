@@ -1,0 +1,5 @@
+This is a simple ColdFusion wrapper for the Aviary Effects API (http://developers.aviary.com/effects-api)
+
+The com/aviary.cfc component houses the wrapper for the API. Within it are 5 methods that interact directly with the API (getfilters, gettime, upload, renderoptions, render). The remaining methods are support functions that can be modified as needed by the developer.
+
+Enjoy :)
