@@ -1,5 +1,5 @@
 <cfscript>
-	Aviary = new com.aviary(api_key="myapikey",secret="myapisecret");
+	Aviary = new com.aviary(api_key="dc6eca5f2",secret="d5c5890e9",response_format="xml");
 	// switch call to api, depending on requested method
 	switch(form.method) {
 		// upload

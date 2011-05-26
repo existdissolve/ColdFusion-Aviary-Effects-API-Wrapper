@@ -1,7 +1,14 @@
+<cfparam name="url.format" default="json">
 <cfscript>
-	Aviary = new com.aviary(api_key="myapikey",secret="myapisecret");
-	filterlist = Aviary.getfilters();
-	filters = Aviary.formatfilters(filterlist);
+	Aviary = new com.aviary(api_key="dc6eca5f2",secret="d5c5890e9",response_format=url.format);
+	if(url.format eq "xml") {
+		filterlist = Aviary.getfilters();
+		filters = Aviary.formatfilters(filterlist);
+	}
+	else {
+		filterlist = deserializejson(Aviary.getfilters());
+		filters = filterlist.response.filters.filter;
+	}
 </cfscript>
 <!DOCTYPE html>
 <html>
@@ -24,10 +31,18 @@
 		<link href="http://extjs.cachefly.net/ext-3.3.1/resources/css/ext-all.css" type="text/css" rel="stylesheet" />
 		<link href="http://extjs.cachefly.net/ext-3.3.1/resources/css/xtheme-gray.css" type="text/css" rel="stylesheet" />
 		<cfif islocalhost(getlocalhostip())>
-			<script src="js/AviaryCF.js"></script>  
+			<cfif url.format eq "xml">
+				<script src="js/AviaryCF.js"></script>  
+			<cfelse>
+				<script src="js/AviaryCF_JSON.js"></script>  
+			</cfif>
 			<link href="css/style.css" type="text/css" rel="stylesheet" />
 		<cfelse>
-			<script src="js/min_AviaryCF.js"></script>  
+			<cfif url.format eq "xml">
+				<script src="js/min_AviaryCF.js"></script> 
+			<cfelse>
+				<script src="js/min_AviaryCF_JSON.js"></script> 
+			</cfif>
 			<link href="css/min_style.css" type="text/css" rel="stylesheet" />
 		</cfif>
 	</head>
@@ -57,7 +72,7 @@
 						<select name="filter" id="filterlistselect" onChange="GetRenderOptions(this.value)">
 							<cfoutput>
 							<cfloop from="1" to="#arraylen(filters)#" index="i">
-							<option value="#filters[i].id#" title="#filters[i].description#">#filters[i].label#</option>
+							<option value="#filters[i].uid#" title="#filters[i].description#">#filters[i].label#</option>
 							</cfloop>
 							</cfoutput>
 						</select>

@@ -6,8 +6,9 @@ component displayname="Aviary Effects API Wrapper" output="false" accessors="tru
 	property 	name="app_version" type="numeric" getter="true" setter="true" default="1.0" hint="Version of Application";
 	property 	name="platform" type="string" getter="true" setter="true" default="web" hint="Platform accessing API";
 	property 	name="version" type="numeric" getter="true" setter="true" default="0.2" hint="Version of API";		
-	property 	name="baseparams"type="struct"getter="true"setter="true"hint="Structure for holding frequently used params used in every api request";
-	property 	name="endpoints"type="struct"getter="true"setter="true"hint="Structure for holding frequently used params used in every api request";
+	property 	name="baseparams"type="struct" getter="true" setter="true"hint="Structure for holding frequently used params used in every api request";
+	property 	name="endpoints" type="struct" getter="true" setter="true" hint="Structure for holding frequently used params used in every api request";
+	property	name="response_format" type="string" getter="true" setter="true" hint="Type of response from Aviary servers" default="json";
 	
 	/**
 	* @hint Returns initialized instance of component.
@@ -22,7 +23,8 @@ component displayname="Aviary Effects API Wrapper" output="false" accessors="tru
 			string software_version = "ColdFusion",
 			string platform = "web",
 			numeric version = 0.2,
-			numeric app_version = 1.0
+			numeric app_version = 1.0,
+			string response_format = "json"
 		) 
 	{
 		this.setapi_key(arguments.api_key);
@@ -33,6 +35,7 @@ component displayname="Aviary Effects API Wrapper" output="false" accessors="tru
 		this.setsoftware_version(arguments.software_version);
 		this.setplatform(arguments.platform);
 		this.setversion(arguments.version);
+		this.setresponse_format(arguments.response_format);
 		
 		this.setbaseparams({
 			"api_key" 			= this.getapi_key(),
@@ -40,7 +43,8 @@ component displayname="Aviary Effects API Wrapper" output="false" accessors="tru
 			"software_version"	= this.getsoftware_version(),
 			"app_version"		= this.getapp_version(),
 			"platform"			= this.getplatform(),
-			"version"			= this.getversion()
+			"version"			= this.getversion(),
+			"response_format"	= this.getresponse_format()
 		});
 		this.setendpoints({
 			"base" 		= "http://cartonapi.aviary.com/services/",
@@ -71,8 +75,9 @@ component displayname="Aviary Effects API Wrapper" output="false" accessors="tru
 		req.addparam(name="hardware_version",value=baseparams.hardware_version,type="formfield");
 		req.addparam(name="software_version",value=baseparams.software_version,type="formfield");
 		req.addparam(name="app_version",value=baseparams.app_version,type="formfield");
-		req.addparam(name="ts",value=baseparams.ts,type="formfield");
+		req.addparam(name="ts",value=createunixtimestamp(),type="formfield");
 		req.addparam(name="version",value=baseparams.version,type="formfield");
+		req.addparam(name="response_format",value=baseparams.response_format,type="formfield");
 		req.addparam(name="api_sig",value=signature,type="formfield");
 		
 		result = req.send().getprefix();
@@ -98,9 +103,10 @@ component displayname="Aviary Effects API Wrapper" output="false" accessors="tru
 		req.addparam(name="hardware_version",value=baseparams.hardware_version,type="formfield");
 		req.addparam(name="software_version",value=baseparams.software_version,type="formfield");
 		req.addparam(name="app_version",value=baseparams.app_version,type="formfield");
-		req.addparam(name="ts",value=baseparams.ts,type="formfield");
+		req.addparam(name="ts",value=createunixtimestamp(),type="formfield");
 		req.addparam(name="version",value=baseparams.version,type="formfield");
 		req.addparam(name="verbose",value=arguments.verbose,type="formfield");
+		req.addparam(name="response_format",value=baseparams.response_format,type="formfield");
 		req.addparam(name="api_sig",value=signature,type="formfield");
 		
 		result = req.send().getprefix();
@@ -142,9 +148,10 @@ component displayname="Aviary Effects API Wrapper" output="false" accessors="tru
 		req.addparam(name="hardware_version",value=baseparams.hardware_version,type="formfield");
 		req.addparam(name="software_version",value=baseparams.software_version,type="formfield");
 		req.addparam(name="app_version",value=baseparams.app_version,type="formfield");
-		req.addparam(name="ts",value=baseparams.ts,type="formfield");
+		req.addparam(name="ts",value=createunixtimestamp(),type="formfield");
 		req.addparam(name="version",value=baseparams.version,type="formfield");
 		req.addparam(name="verbose",value=arguments.verbose,type="formfield");
+		req.addparam(name="response_format",value=baseparams.response_format,type="formfield");
 		req.addparam(name="api_sig",value=signature,type="formfield");
 		req.addparam(name="file",file=arguments.file,type="file");
 		
@@ -185,8 +192,9 @@ component displayname="Aviary Effects API Wrapper" output="false" accessors="tru
 		req.addparam(name="hardware_version",value=baseparams.hardware_version,type="formfield");
 		req.addparam(name="software_version",value=baseparams.software_version,type="formfield");
 		req.addparam(name="app_version",value=baseparams.app_version,type="formfield");
-		req.addparam(name="ts",value=baseparams.ts,type="formfield");
+		req.addparam(name="ts",value=createunixtimestamp(),type="formfield");
 		req.addparam(name="version",value=baseparams.version,type="formfield");
+		req.addparam(name="response_format",value=baseparams.response_format,type="formfield");
 		
 		req.addparam(name="backgroundcolor",value=arguments.backgroundcolor,type="formfield");
 		req.addparam(name="format",value=arguments.format,type="formfield");
@@ -241,8 +249,9 @@ component displayname="Aviary Effects API Wrapper" output="false" accessors="tru
 		req.addparam(name="hardware_version",value=baseparams.hardware_version,type="formfield");
 		req.addparam(name="software_version",value=baseparams.software_version,type="formfield");
 		req.addparam(name="app_version",value=baseparams.app_version,type="formfield");
-		req.addparam(name="ts",value=baseparams.ts,type="formfield");
+		req.addparam(name="ts",value=createunixtimestamp(),type="formfield");
 		req.addparam(name="version",value=baseparams.version,type="formfield");
+		req.addparam(name="response_format",value=baseparams.response_format,type="formfield");
 		
 		req.addparam(name="backgroundcolor",value=arguments.backgroundcolor,type="formfield");
 		req.addparam(name="format",value=arguments.format,type="formfield");
@@ -287,7 +296,7 @@ component displayname="Aviary Effects API Wrapper" output="false" accessors="tru
 		for(i=1;i<=arraylen(root.xmlchildren);i++) {
 			item = {
 				"label" = root.xmlchildren[i].getattribute("label"),
-				"id" = root.xmlchildren[i].getattribute("uid"),
+				"uid" = root.xmlchildren[i].getattribute("uid"),
 				"description" = root.xmlchildren[i].description.xmltext
 			};
 			arrayappend(filters,item);
@@ -340,10 +349,10 @@ component displayname="Aviary Effects API Wrapper" output="false" accessors="tru
 	**/
 	private string function createsig(extraparams={}) {
 		signature	= this.getsecret();
-		baseparams	= this.getbaseparams();
-		baseparams.ts = createunixtimestamp();
-		structappend(baseparams,arguments.extraparams);
-		params = baseparams;
+		bps	= structcopy(this.getbaseparams());
+		bps.ts = createunixtimestamp();
+		structappend(bps,arguments.extraparams);
+		params = bps;
 		paramlist = listsort(structkeylist(params),"textnocase");
 		for(i=1;i<=listlen(paramlist);i++) {
 			if(params[listgetat(paramlist,i)] != "") {
