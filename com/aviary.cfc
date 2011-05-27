@@ -232,10 +232,10 @@ component displayname="Aviary Effects API Wrapper" output="false" accessors="tru
 			required numeric cellwidth,
 			required numeric cellheight,
 			required string calltype,
-			array renderparameters = arraynew(1)
+			string renderparameters = ''
 		)
 	{	
-		arguments.renderparameters = trim(createrenderparameterxml(arguments.renderparameters));
+		arguments.renderparameters = trim(arguments.renderparameters);
 		signature = createsig(arguments);
 		baseparams= this.getbaseparams();
 		endpoints = this.getendpoints();
@@ -379,7 +379,7 @@ component displayname="Aviary Effects API Wrapper" output="false" accessors="tru
 	* @description Helper to format valid xml string for renderoptions()
 	* @output false
 	**/
-	private string function createrenderparameterxml(required array renderparameters) {
+	public string function createrenderparameterxml(required array renderparameters) {
 		getpagecontext().getcfoutput().clearall();
 		str = createobject('java','java.lang.StringBuffer').init();
 		if(arraylen(arguments.renderparameters)) {

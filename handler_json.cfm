@@ -1,11 +1,11 @@
 <cfscript>
-	Aviary = new com.aviary(api_key=application.api_key,secret=application.secret,response_format="xml");
+	Aviary = new com.aviary(api_key=application.api_key,secret=application.secret,response_format="json");
 	// switch call to api, depending on requested method
 	switch(form.method) {
 		// upload
 		case "upload": 
-			tmpresult = Aviary.upload(file=form.file);
-			writeoutput(Aviary.formatupload(tmpresult));
+			result = Aviary.upload(file=form.file);
+			writeoutput(result);
 			break;
 		// renderoptions
 		case "renderoptions":
@@ -24,11 +24,9 @@
 				calltype=form.calltype
 			};
 			// make intial api call
-			tmpresult = Aviary.renderoptions(argumentcollection=args);
-			// call custom formatting method (to parse xml string into CF structure)
-			result = Aviary.formatrenderoptions(tmpresult);
+			result = Aviary.renderoptions(argumentcollection=args);
 			// return serialized version of CF array
-			writeoutput(serializejson(result));
+			writeoutput(result);
 			break;
 		// render
 		case "render":
@@ -48,9 +46,7 @@
 				renderparameters = Aviary.createrenderparameterxml(deserializejson(form.renderparameters))
 			};
 			// make initial api call
-			tmpresult = Aviary.render(argumentcollection=args);
-			// call custom formatting method (to parse xml string into CF object)
-			result = Aviary.formatrender(tmpresult);
+			result = Aviary.render(argumentcollection=args);
 			// return 
 			writeoutput(result);
 			break;

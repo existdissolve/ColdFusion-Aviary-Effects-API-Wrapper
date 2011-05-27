@@ -1,6 +1,6 @@
 <cfparam name="url.format" default="json">
 <cfscript>
-	Aviary = new com.aviary(api_key="xxxxx",secret="xxxxxx",response_format=url.format);
+	Aviary = new com.aviary(api_key=application.api_key,secret=application.secret,response_format=url.format);
 	if(url.format eq "xml") {
 		filterlist = Aviary.getfilters();
 		filters = Aviary.formatfilters(filterlist);
