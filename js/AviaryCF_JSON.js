@@ -118,7 +118,11 @@ function RenderOptions(req,opts) {
 	ARGUMENTS: 	opt (int, required): the quadrant of the grid which was chosen
 *****************************************************************************/
 function ApplyOptions(opt) {
-	var opts = renderoptions[opt].parameters.parameter;
+	var opts =renderoptions[opt].parameters;
+	var opts = Ext.encode({filtermetadata:{parameters:opts}});
+	opts = opts.replace(/uid/gi,'@uid');
+	opts = opts.replace(/value/gi,'@value');
+	opts = opts.replace(/"id"/gi,'"@id"');
 	args = {
 		backgroundcolor: "0xFF000000",
 		format: "jpg",
@@ -133,7 +137,7 @@ function ApplyOptions(opt) {
 		calltype: "filteruse",
 		filterid: Ext.getCmp("filterselect").getValue(),
 		method: "render",
-		renderparameters: Ext.encode(opts),
+		renderparameters: opts,
 		returnformat: "json"
 	};
 	Ext.Msg.wait("Filter is being applied...","A few more seconds");

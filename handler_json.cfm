@@ -43,7 +43,7 @@
 				cellwidth=form.cellwidth,
 				cellheight=form.cellheight,
 				calltype=form.calltype,
-				renderparameters = Aviary.createrenderparameterxml(deserializejson(form.renderparameters))
+				renderparameters = form.renderparameters
 			};
 			// make initial api call
 			result = Aviary.render(argumentcollection=args);
